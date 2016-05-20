@@ -37,7 +37,7 @@ public class Graph<E extends Comparable<E>>{
 	private Map<E,Nodo> grafo;
 	private Stack<Nodo> miPila;
 	private Set<Nodo> visitados;
-
+	private LinkedList<Nodo> nodos;
 //---------------------------------------------------------------------------------------------			
 //constructor----------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------	
@@ -46,6 +46,7 @@ public class Graph<E extends Comparable<E>>{
 		grafo = new HashMap<E,Nodo>();		
 		miPila = new Stack<Nodo>();	
 		visitados = new HashSet<Nodo>();
+		nodos= new LinkedList<Nodo>();
 	}
 //---------------------------------------------------------------------------------------------	
 //Metodos--------------------------------------------------------------------------------------	
@@ -196,6 +197,7 @@ public class Graph<E extends Comparable<E>>{
 	//Pasar todos los elementos del grafo a una linkedList de Nodos.	
 
 	public LinkedList<Nodo<E>> toLinkedList (E v){
+		
 		visitados.clear();
 		Nodo nodo = grafo.get(v);
 		LinkedList<Nodo<E>> list = new LinkedList<Nodo<E>>();
@@ -207,7 +209,7 @@ public class Graph<E extends Comparable<E>>{
 		visitados.add(nodo); //marca
 		for (Arco arco: nodo.adj){
 			if (!(visitados.contains(arco.destino))){
-				return toLinkedListRecursive(listResult,nodo);
+				toLinkedListRecursive(listResult,nodo);
 			}
 		}
 		return listResult;

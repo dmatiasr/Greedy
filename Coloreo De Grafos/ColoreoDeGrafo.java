@@ -14,13 +14,43 @@ public class ColoreoDeGrafo{
 		grafo.insertarVertice("e");
 		grafo.insertarVertice("f");
 		//relaciones o arcos. (Edge)
-		
+		grafo.insertarArco("a","b",1);
+		grafo.insertarArco("a","c",1);
+		grafo.insertarArco("b","a",1);
+		grafo.insertarArco("b","d",1);
+		grafo.insertarArco("c","a",1);
+		grafo.insertarArco("c","d",1);
+		grafo.insertarArco("d","c",1);
+		grafo.insertarArco("d","b",1);
+		grafo.insertarArco("d","e",1);
+		grafo.insertarArco("d","f",1);
+		grafo.insertarArco("e","d",1);
+		grafo.insertarArco("e","f",1);
+		grafo.insertarArco("f","d",1);
+		grafo.insertarArco("f","e",1);
+		//Grafo completo 
+		//OBTENER TODO EL GRAFO EN UNA LINKEDLIST
+		grafo.dfsR("a");
+		Set<Nodo> visit = new HashSet<Nodo>();
+		visit=grafo.getVisitados();
 
+
+		Iterator<Nodo> it = visit.iterator();
+		while (it.hasNext()){
+			System.out.println(  it.next().getValor() );
+		}
+
+		//LinkedList<Nodo> paraColorear = grafo.toLinkedList("a");
+		//String s= "";
+		//for (int i=0 ; i < paraColorear.size();i++){
+		//	s+=" "+paraColorear.poll();
+		//}
+		//System.out.println(s);
 
 	}
 	//Metodo coloreo de grafos : (Nodo,color) 
 	//return la lista de pares (Nodo,color)
-	public LinkedList<Pair<Nodo,Integer>> coloringGraph (LinkedList<Nodo> colorear, LinkedList<Integer> colores){
+	public static LinkedList<Pair<Nodo,Integer>> coloringGraph (LinkedList<Nodo> colorear, LinkedList<Integer> colores){
 		Pair<Nodo,Integer> result = new Pair<Nodo,Integer> ();//creo par de resultado
 		LinkedList<Pair<Nodo,Integer>> listPintados = new LinkedList<Pair<Nodo,Integer>>();//lista de pares 
 		while (!colorear.isEmpty() && !colores.isEmpty() ){
